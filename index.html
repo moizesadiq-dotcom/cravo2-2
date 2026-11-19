@@ -157,7 +157,7 @@ button { cursor: pointer; }
 <main class="flex-1 min-w-0 flex flex-col h-full bg-grid relative overflow-hidden">
 
   <!-- HEADER -->
-  <header class="h-16 px-3 sm:px-6 md:px-8 flex items-center justify-between gap-2 border-b border-gray-200 bg-white/90 backdrop-blur-sm z-20 shrink-0">
+  <header class="h-16 px-3 sm:px-6 md:px-8 flex items-center justify-between gap-2 border-b border-gray-200 bg-white/95 backdrop-blur-sm z-20 shrink-0">
     <div class="flex items-center gap-2 min-w-0">
       <button onclick="openMobileSidebar()" class="md:hidden w-9 h-9 flex items-center justify-center rounded-xl bg-white border border-gray-200 hover:bg-gray-100 shrink-0" aria-label="Open menu">
         <i data-lucide="menu" class="w-4 h-4"></i>
@@ -197,13 +197,13 @@ button { cursor: pointer; }
     </div>
   </header>
 
-  <!-- SCROLLABLE CONTENT -->
+  <!-- SCROLLABLE CHAT & HERO AREA -->
   <div id="chatScrollArea" class="flex-1 min-h-0 overflow-y-auto px-3 sm:px-6 md:px-8 py-4 sm:py-6">
     <div class="max-w-3xl mx-auto w-full min-w-0">
 
       <!-- WELCOME HERO -->
-      <div id="welcomeHero" class="flex flex-col items-center justify-center text-center py-6 sm:py-10">
-        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-[#FF6428] rounded-2xl flex items-center justify-center text-white mb-5 shadow-xl shadow-orange-200">
+      <div id="welcomeHero" class="flex flex-col items-center justify-center text-center py-4 sm:py-8">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-[#FF6428] rounded-2xl flex items-center justify-center text-white mb-4 sm:mb-5 shadow-xl shadow-orange-200">
           <svg class="w-7 h-7 sm:w-8 sm:h-8 fill-current" viewBox="0 0 24 24">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
@@ -216,7 +216,7 @@ button { cursor: pointer; }
       <div id="conversationStream" class="hidden space-y-5 pb-4"></div>
 
       <!-- FEATURE CARDS -->
-      <div id="featureCardsSection" class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 my-5">
+      <div id="featureCardsSection" class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 my-4 sm:my-6">
 
         <div onclick="quickTrigger('image')" class="p-4 sm:p-5 bg-white rounded-2xl border border-gray-200 hover:border-orange-300 hover:shadow-lg transition-all cursor-pointer group min-w-0">
           <div class="w-10 h-10 rounded-xl bg-orange-50 text-[#FF6428] flex items-center justify-center mb-3 sm:mb-4">
@@ -247,7 +247,7 @@ button { cursor: pointer; }
 
       </div>
 
-      <div class="text-center pt-2 pb-2">
+      <div class="text-center pt-1 pb-2">
         <span class="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-500 text-xs px-4 py-1.5 rounded-full">
           <span class="w-2 h-2 rounded-full bg-[#FF6428]"></span>
           Cravo AI Studio
@@ -257,46 +257,48 @@ button { cursor: pointer; }
     </div>
   </div>
 
-  <!-- BOTTOM COMPOSER -->
-  <div class="px-3 sm:px-6 md:px-8 pt-2 pb-3 sm:pb-5 bg-gradient-to-t from-white via-white/95 to-transparent shrink-0 z-10">
-    <div class="max-w-3xl mx-auto w-full">
+  <!-- FIXED BOTTOM COMPOSER (ALWAYS VISIBLE WITH SEND BUTTON) -->
+  <div id="composerBar" class="px-3 sm:px-6 md:px-8 pt-2 pb-3 sm:pb-4 bg-white/95 backdrop-blur-sm border-t border-gray-100 shrink-0 z-20">
+    <div class="max-w-3xl mx-auto w-full min-w-0">
       <div class="bg-white rounded-2xl border border-orange-200 p-2.5 sm:p-3 shadow-sm focus-within:border-[#FF6428] focus-within:shadow-md">
 
-        <div class="flex items-center gap-1.5 sm:gap-2 pb-2.5 border-b border-gray-100 overflow-x-auto text-xs font-semibold">
+        <div class="flex items-center gap-1.5 sm:gap-2 pb-2 border-b border-gray-100 overflow-x-auto text-xs font-semibold">
           <span class="text-gray-400 px-1 shrink-0">Generate:</span>
-          <button onclick="setFastMode('image')" id="pill-image" class="px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-gray-100 hover:bg-orange-50 flex items-center gap-1.5 whitespace-nowrap shrink-0">
-            <i data-lucide="image" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Image
+          <button type="button" onclick="setFastMode('image')" id="pill-image" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-orange-50 flex items-center gap-1.5 whitespace-nowrap shrink-0">
+            <i data-lucide="image" class="w-3.5 h-3.5"></i> Image
           </button>
-          <button onclick="setFastMode('video')" id="pill-video" class="px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-gray-100 hover:bg-orange-50 flex items-center gap-1.5 whitespace-nowrap shrink-0">
-            <i data-lucide="video" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Video
+          <button type="button" onclick="setFastMode('video')" id="pill-video" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-orange-50 flex items-center gap-1.5 whitespace-nowrap shrink-0">
+            <i data-lucide="video" class="w-3.5 h-3.5"></i> Video
           </button>
-          <button onclick="setFastMode('post')" id="pill-post" class="px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-gray-100 hover:bg-orange-50 flex items-center gap-1.5 whitespace-nowrap shrink-0">
-            <i data-lucide="sparkles" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Social Post
+          <button type="button" onclick="setFastMode('post')" id="pill-post" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-orange-50 flex items-center gap-1.5 whitespace-nowrap shrink-0">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Social Post
           </button>
-          <button onclick="setFastMode('chat')" id="pill-chat" class="px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-orange-50 text-[#FF6428] flex items-center gap-1.5 whitespace-nowrap shrink-0">
-            <i data-lucide="bot" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i> Smart AI
+          <button type="button" onclick="setFastMode('chat')" id="pill-chat" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-orange-50 text-[#FF6428] flex items-center gap-1.5 whitespace-nowrap shrink-0">
+            <i data-lucide="bot" class="w-3.5 h-3.5"></i> Smart AI
           </button>
         </div>
 
-        <textarea id="userInput" rows="2" placeholder="Ask anything or ask Cravo to create images, videos, or posts..." class="w-full resize-none border-0 bg-transparent p-2.5 sm:p-3 text-sm outline-none focus:ring-0" onkeydown="handleKeyPress(event)"></textarea>
+        <div class="flex items-end gap-2 pt-2">
+          <textarea id="userInput" rows="1" placeholder="Ask anything or ask Cravo to create images, videos, or posts..." class="flex-1 min-w-0 resize-none border-0 bg-transparent px-2 py-2 text-sm leading-snug outline-none focus:ring-0 max-h-28 overflow-y-auto" onkeydown="handleKeyPress(event)" oninput="autoResizeTextarea(this)"></textarea>
 
-        <div class="flex items-center justify-between gap-2">
+          <button type="button" id="sendBtn" onclick="sendMessage()" class="h-10 px-3.5 sm:px-4 bg-[#FF6428] hover:bg-[#EA580C] active:scale-95 text-white rounded-xl flex items-center justify-center gap-1.5 shadow-md shadow-orange-200 shrink-0 font-semibold text-xs sm:text-sm transition-all" aria-label="Send message">
+            <span>Send</span>
+            <i data-lucide="arrow-up" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <div class="flex items-center justify-between gap-2 pt-1.5 mt-1 border-t border-gray-50">
           <div class="flex items-center gap-1 sm:gap-2 min-w-0">
-            <button onclick="document.getElementById('mockUpload').click()" class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-100 shrink-0" aria-label="Attach file">
+            <button type="button" onclick="document.getElementById('mockUpload').click()" class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-100 shrink-0" aria-label="Attach file">
               <i data-lucide="plus" class="w-4 h-4"></i>
             </button>
             <input type="file" id="mockUpload" class="hidden" onchange="showToast('Reference file attached')">
-            <button onclick="toggleVoice()" id="voiceBtn" class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-100 shrink-0" aria-label="Voice input">
+            <button type="button" onclick="toggleVoice()" id="voiceBtn" class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-100 shrink-0" aria-label="Voice input">
               <i data-lucide="mic" class="w-4 h-4"></i>
             </button>
             <span id="voiceStatus" class="hidden text-xs text-[#FF6428] truncate">Listening...</span>
           </div>
-          <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-            <span class="hidden sm:inline text-[11px] text-gray-400">Press Enter to Send</span>
-            <button onclick="sendMessage()" class="w-9 h-9 sm:w-10 sm:h-10 bg-[#FF6428] hover:bg-[#EA580C] text-white rounded-xl flex items-center justify-center shadow-md shadow-orange-200 shrink-0" aria-label="Send message">
-              <i data-lucide="arrow-up" class="w-4 h-4 sm:w-5 sm:h-5"></i>
-            </button>
-          </div>
+          <span class="hidden sm:inline text-[11px] text-gray-400">Press Enter to Send</span>
         </div>
 
       </div>
@@ -306,7 +308,7 @@ button { cursor: pointer; }
 </main>
 
 <!-- TOAST -->
-<div id="toast" class="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 bg-[#20212B] text-white px-4 py-3 rounded-xl flex items-center gap-3 translate-y-24 opacity-0 transition-all z-50 text-xs shadow-xl sm:max-w-sm">
+<div id="toast" class="fixed bottom-24 left-4 right-4 sm:bottom-6 sm:left-auto sm:right-6 bg-[#20212B] text-white px-4 py-3 rounded-xl flex items-center gap-3 translate-y-24 opacity-0 transition-all z-50 text-xs shadow-xl sm:max-w-sm">
   <i data-lucide="check-circle" class="w-4 h-4 text-green-400 shrink-0"></i>
   <span id="toastMsg" class="truncate">Action completed</span>
 </div>
@@ -316,6 +318,11 @@ lucide.createIcons();
 
 let currentMode = 'chat';
 let isListening = false;
+
+function autoResizeTextarea(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 112) + 'px';
+}
 
 function openMobileSidebar() {
   document.getElementById('sidebar').classList.remove('-translate-x-full');
@@ -349,8 +356,8 @@ function setFastMode(mode) {
   ['image','video','post','chat'].forEach(m => {
     const el = document.getElementById('pill-' + m);
     el.className = m === mode
-      ? 'px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-orange-50 text-[#FF6428] flex items-center gap-1.5 whitespace-nowrap shrink-0'
-      : 'px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg bg-gray-100 hover:bg-orange-50 flex items-center gap-1.5 whitespace-nowrap shrink-0';
+      ? 'px-2.5 sm:px-3 py-1.5 rounded-lg bg-orange-50 text-[#FF6428] flex items-center gap-1.5 whitespace-nowrap shrink-0'
+      : 'px-2.5 sm:px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-orange-50 flex items-center gap-1.5 whitespace-nowrap shrink-0';
   });
 
   const input = document.getElementById('userInput');
@@ -384,11 +391,13 @@ function handleKeyPress(e) {
 }
 
 function startNewChat() {
+  const input = document.getElementById('userInput');
   document.getElementById('conversationStream').innerHTML = '';
   document.getElementById('conversationStream').classList.add('hidden');
   document.getElementById('welcomeHero').classList.remove('hidden');
   document.getElementById('featureCardsSection').classList.remove('hidden');
-  document.getElementById('userInput').value = '';
+  input.value = '';
+  input.style.height = 'auto';
   setMode('chat');
   showToast('Started a fresh session');
 }
@@ -461,13 +470,17 @@ function quickTrigger(type) {
     input.value = 'Draft a clear, engaging launch post for our new creative studio workflow.';
   }
 
+  autoResizeTextarea(input);
   sendMessage();
 }
 
 function sendMessage() {
   const input = document.getElementById('userInput');
   const text = input.value.trim();
-  if (!text) return;
+  if (!text) {
+    input.focus();
+    return;
+  }
 
   document.getElementById('welcomeHero').classList.add('hidden');
   document.getElementById('featureCardsSection').classList.add('hidden');
@@ -477,6 +490,8 @@ function sendMessage() {
 
   appendUserMessage(text);
   input.value = '';
+  input.style.height = 'auto';
+  input.focus();
 
   const lower = text.toLowerCase();
   let type = currentMode;
